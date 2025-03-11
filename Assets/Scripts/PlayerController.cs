@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private Transform vueJoueur;
+    [SerializeField] private HandScript hand;
+    public GameObject holdItem;
+    static public PlayerController Instance { get; private set; }
+    public Transform vueJoueur;
     private PlayerControlMaps inputActions;
     private Rigidbody playerRigidbody;
 
@@ -14,6 +17,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask selectionLayer;
     private void Awake()
     {
+        Instance = this;
         playerRigidbody = gameObject.GetComponent<Rigidbody>();
         inputActions = new PlayerControlMaps();
         inputActions.FPSPlayingMap.Enable();
@@ -23,7 +27,44 @@ public class PlayerController : MonoBehaviour
     {
         InputManager.Instance.OnSprintInputActivated += Instance_OnSprintInputActivated;
         InputManager.Instance.OnSprintInputDisactivated += Instance_OnSprintInputDisactivated;
+        InputManager.Instance.OnInteractInputReceived += Instance_OnInteractInputReceived;
+        InputManager.Instance.OnInteractAlternateInputReceived += Instance_OnInteractAlternateInputReceived;
         vueJoueur = Camera.main.transform;
+    }
+
+
+
+    private void Instance_OnInteractInputReceived(object sender, System.EventArgs e)
+    {
+        if(holdItem == null) {
+            Interactible interactibleScript = selectedObject.GetComponent<Interactible>();
+            if (interactibleScript != null)
+            {
+                interactibleScript.Interact();
+            }
+            else
+            {
+                holdItem = selectedObject;
+                hand.Hold();
+            }
+        }
+        else
+        {
+            Interactible interactibleScript = selectedObject.GetComponent<Interactible>();
+            if (interactibleScript != null)
+            {
+                interactibleScript.InteractWith(holdItem);
+            }
+        }
+
+    }
+    private void Instance_OnInteractAlternateInputReceived(object sender, System.EventArgs e)
+    {
+        if(holdItem != null)
+        {
+            hand.Throw();
+            holdItem = null;
+        }
     }
 
     private void Instance_OnSprintInputDisactivated(object sender, System.EventArgs e)
@@ -38,13 +79,17 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        HandlePlayerRotation();
         GetLookSelection();
-        //Debug.Log("Selected : " + selectedObject);
     }
     private void FixedUpdate()
     {
         HandleMovement();
+        HandlePlayerRotation();
+    }
+    private void LateUpdate()
+    {
+
+
     }
     void HandleMovement()
     {
@@ -56,8 +101,8 @@ public class PlayerController : MonoBehaviour
 
     void GetLookSelection()
     {
-        bool touched = Physics.Raycast(transform.position, vueJoueur.forward, out RaycastHit hitInfo, 6f, selectionLayer);
-        Debug.DrawRay(transform.position, vueJoueur.forward * 6f, Color.green);
+        bool touched = Physics.Raycast(new Vector3(transform.position.x,transform.position.y + 1.5f, transform.position.z), vueJoueur.forward, out RaycastHit hitInfo, 6f, selectionLayer);
+        Debug.DrawRay(new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z), vueJoueur.forward * 6f, Color.green);
         if (!touched)
         {
             if (selectedObject != null) selectedObject = null;
@@ -70,7 +115,6 @@ public class PlayerController : MonoBehaviour
     }
     void HandlePlayerRotation()
     {
-        Debug.Log(new Vector3(0, vueJoueur.eulerAngles.y, 0));
         transform.eulerAngles = new Vector3(0, vueJoueur.eulerAngles.y, 0);
     }
 }   

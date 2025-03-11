@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Blackout
+  - Portail Principal
+  - Virtual Camera
+  - Crossair
+  - "Cl\xE9"
   layers:
   - Default
   - TransparentFX
