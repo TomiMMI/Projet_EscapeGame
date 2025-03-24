@@ -23,8 +23,13 @@ public class PortalTeleport : MonoBehaviour
     {
         collision.transform.position = destination.GetChild(0).position;
         collision.transform.rotation = gameObject.transform.rotation;
-        CameraManipulator.Instance.SetRotation(gameObject.transform.rotation.x);
-        StartCoroutine("BlackOut");
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            CameraManipulator.Instance.SetRotation(-destination.position.x);
+            StartCoroutine("BlackOut");
+        }
+        
+
     }
     IEnumerator BlackOut()
     {

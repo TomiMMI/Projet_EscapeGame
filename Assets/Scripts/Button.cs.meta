@@ -3,7 +3,13 @@ guid: 57396c94a2ebfa24c99431b508d5eb74
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - activatedButtonObject: {instanceID: 0}
+  - disactivatedButtonObject: {instanceID: 0}
+  - portalMaterial: {instanceID: 0}
+  - disactivatedMaterial: {fileID: 2100000, guid: 65f0c8cba7f7b434cb9c03164bb5733f,
+      type: 2}
+  - destinationPortal: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -1,9 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
+    public class PlayerLookinAtSunEventArgs : EventArgs
+    {
+        public bool value;
+    }
+    public event EventHandler<PlayerLookinAtSunEventArgs> PlayerLookingAtSun;
+
     [SerializeField] private HandScript hand;
     public GameObject holdItem;
     static public PlayerController Instance { get; private set; }
@@ -30,6 +37,7 @@ public class PlayerController : MonoBehaviour
         InputManager.Instance.OnInteractInputReceived += Instance_OnInteractInputReceived;
         InputManager.Instance.OnInteractAlternateInputReceived += Instance_OnInteractAlternateInputReceived;
         vueJoueur = Camera.main.transform;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
 
@@ -105,12 +113,22 @@ public class PlayerController : MonoBehaviour
         Debug.DrawRay(new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z), vueJoueur.forward * 6f, Color.green);
         if (!touched)
         {
-            if (selectedObject != null) selectedObject = null;
+            if (selectedObject.CompareTag("Sun"))
+            {
+                PlayerLookingAtSun?.Invoke(this, new PlayerLookinAtSunEventArgs { value = false });
+                selectedObject = null;
+            }
+            else if (selectedObject != null) selectedObject = null;
         }
         else if(selectedObject != hitInfo.collider.gameObject)
         {
             selectedObject = hitInfo.collider.gameObject;
+            if (selectedObject.CompareTag("Sun"))
+            {
+                PlayerLookingAtSun?.Invoke(this, new PlayerLookinAtSunEventArgs { value = true });
+            }
         }
+        
 
     }
     void HandlePlayerRotation()

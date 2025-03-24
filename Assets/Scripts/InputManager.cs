@@ -27,7 +27,7 @@ public class InputManager : MonoBehaviour
 
     private void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Sprint_canceled(UnityEngine.InputSystem.InputAction.CallbackContext obj)

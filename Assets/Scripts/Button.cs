@@ -6,10 +6,14 @@ public class Button : Interactible
 {
     [SerializeField] private GameObject activatedButtonObject;
     [SerializeField] private GameObject disactivatedButtonObject;
+    [SerializeField] private Material portalMaterial;
+    [SerializeField] private Material disactivatedMaterial;
 
     [SerializeField] private GameObject destinationPortal;
 
+
     private static Button activeButton = null;
+
 
     private GameObject mainPortal;
     private bool activated;
@@ -44,7 +48,7 @@ public class Button : Interactible
         }
         activeButton = this;
         mainPortal.GetComponent<PortalTeleport>().SetDestination(destinationPortal);
-        mainPortal.GetComponent<MeshRenderer>().material = disactivatedButtonObject.GetComponent<MeshRenderer>().material;
+        mainPortal.GetComponent<MeshRenderer>().material = portalMaterial;
     }
     public void Desactivate()
     {
@@ -54,7 +58,7 @@ public class Button : Interactible
         activeButton = null;
 
         mainPortal.GetComponent<PortalTeleport>().SetDestination(null);
-        mainPortal.GetComponent<MeshRenderer>().material = null;
+        mainPortal.GetComponent<MeshRenderer>().material = disactivatedMaterial;
         activated = false;
     }
 
