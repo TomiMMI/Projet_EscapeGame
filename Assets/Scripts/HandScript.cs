@@ -11,8 +11,12 @@ public class HandScript : MonoBehaviour
         holdItem.transform.position = hand.transform.position;
         holdItem.transform.SetParent(hand.transform);
         Rigidbody item = holdItem.GetComponent<Rigidbody>();
+        item.transform.localEulerAngles = Vector3.zero;
         item.detectCollisions = false;
+        item.isKinematic = true;
         item.useGravity = false;
+        item.velocity = Vector3.zero;
+        item.angularVelocity = Vector3.zero;
     }
     public void Unhold()
     {

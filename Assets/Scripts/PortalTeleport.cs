@@ -25,7 +25,7 @@ public class PortalTeleport : MonoBehaviour
         collision.transform.rotation = gameObject.transform.rotation;
         if (collision.gameObject.CompareTag("Player"))
         {
-            CameraManipulator.Instance.SetRotation(-destination.position.x);
+            CameraManipulator.Instance.SetRotation(destination.forward.y);
             StartCoroutine("BlackOut");
         }
         

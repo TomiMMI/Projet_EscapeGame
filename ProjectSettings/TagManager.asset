@@ -9,11 +9,12 @@ TagManager:
   - Virtual Camera
   - Crossair
   - "Cl\xE9"
+  - Sun
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Container
   - Water
   - UI
   - Selectable

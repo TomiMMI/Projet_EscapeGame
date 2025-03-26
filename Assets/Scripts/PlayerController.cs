@@ -113,7 +113,7 @@ public class PlayerController : MonoBehaviour
         Debug.DrawRay(new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z), vueJoueur.forward * 6f, Color.green);
         if (!touched)
         {
-            if (selectedObject.CompareTag("Sun"))
+            if (selectedObject != null && selectedObject.CompareTag("Sun"))
             {
                 PlayerLookingAtSun?.Invoke(this, new PlayerLookinAtSunEventArgs { value = false });
                 selectedObject = null;
