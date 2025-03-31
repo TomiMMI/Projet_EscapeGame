@@ -3,37 +3,7 @@ guid: 18a1c6daba6295f489917e430595f752
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Aiguille
-    second: {fileID: 2100000, guid: d6cd21fa49c31cd4db30d4f45bf2d5cd, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Bois
-    second: {fileID: 2100000, guid: dd28bb5c3242c9948983fe3a651f3b75, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Cadre
-    second: {fileID: 2100000, guid: db469f174b80b74459490210c6b35b9c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Fond
-    second: {fileID: 2100000, guid: 035b0ac594fdbde488a092945ae34b71, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material
-    second: {fileID: 2100000, guid: 4e9c78ed5a0e7f54f88b158bd5cdbfba, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Metal
-    second: {fileID: 2100000, guid: 13ab06caf812a914892e9649d0d73143, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0

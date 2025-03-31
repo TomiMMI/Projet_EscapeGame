@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Sun : MonoBehaviour
 {
+    public AnimationScript animation;
     private float decompte = 4f;
     private bool isLookedAt = false;
     void Start()
@@ -22,7 +23,10 @@ public class Sun : MonoBehaviour
     {
         if(decompte <= 0)
         {
-            //Animation()
+            animation.SetAnimation();
+            PlayerController.Instance.PlayerLookingAtSun -= Instance_PlayerLookingAtSun;
+            isLookedAt = false;
+            decompte = 4;
         }
         else if (isLookedAt)
         {

@@ -3,7 +3,7 @@ using UnityEngine;
 public class BoxClapet : MonoBehaviour
 {
     public Transform clapet;  // Le couvercle à animer
-    public float openAngle = -90f;  // Angle d'ouverture sur Y
+    public float openAngle = 90f;  // Angle d'ouverture sur Y
     public float speed = 5f;  // Vitesse d'ouverture/fermeture
 
     private bool isOpen = false;

@@ -44,27 +44,30 @@ public class PlayerController : MonoBehaviour
 
     private void Instance_OnInteractInputReceived(object sender, System.EventArgs e)
     {
-        if(holdItem == null) {
-            Interactible interactibleScript = selectedObject.GetComponent<Interactible>();
-            if (interactibleScript != null)
+        if (selectedObject != null)
+        {
+            if (holdItem == null)
             {
-                interactibleScript.Interact();
+                Interactible interactibleScript = selectedObject.GetComponent<Interactible>();
+                if (interactibleScript != null)
+                {
+                    interactibleScript.Interact();
+                }
+                else
+                {
+                    holdItem = selectedObject;
+                    hand.Hold();
+                }
             }
             else
             {
-                holdItem = selectedObject;
-                hand.Hold();
+                Interactible interactibleScript = selectedObject.GetComponent<Interactible>();
+                if (interactibleScript != null)
+                {
+                    interactibleScript.InteractWith(holdItem);
+                }
             }
         }
-        else
-        {
-            Interactible interactibleScript = selectedObject.GetComponent<Interactible>();
-            if (interactibleScript != null)
-            {
-                interactibleScript.InteractWith(holdItem);
-            }
-        }
-
     }
     private void Instance_OnInteractAlternateInputReceived(object sender, System.EventArgs e)
     {

@@ -3,32 +3,7 @@ guid: 630d205ad53edbe43b74da1b33f4d544
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Aiguille
-    second: {fileID: 2100000, guid: 1e311b75555ea0c418bcbbac738d362e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Chrome
-    second: {fileID: 2100000, guid: 55a4de13af343004b9dff4cf7ce37491, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Fond
-    second: {fileID: 2100000, guid: c2cbfac85f62f6e4cb1d68928c1868fa, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Montre
-    second: {fileID: 2100000, guid: 761643a42b69b9e4094c446e457e452f, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Vitre
-    second: {fileID: 2100000, guid: 33d4f01a320cf7d4282aada578c783ee, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
